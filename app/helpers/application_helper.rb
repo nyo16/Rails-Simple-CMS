@@ -7,7 +7,7 @@ module ApplicationHelper
       "#{controller.action_name.titleize} #{controller.controller_name.titleize.singularize}"
     end
   end
-  
+
   def create_or_update_string
     if controller.action_name == "new"
       "Create"
@@ -15,9 +15,14 @@ module ApplicationHelper
       "Update"
     end
   end
-  
+
   def first_menu
     Menu.first
   end
-  
+
+  def menu(name)
+    render partial: "pages/partials/menu", locals: { name: name}
+  end
+
 end
+
