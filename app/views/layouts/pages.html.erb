@@ -17,9 +17,7 @@
 <body>
 	<div id="container">
 		<header id="header"><h1>Header</h1></header>
-		<nav id="navbar">
-			<%= render "pages/partials/menu" %>
-		</nav>
+      <%= menu("default") %>
 		<div id="main" role="main">
 			<%= yield %>
 		</div>
