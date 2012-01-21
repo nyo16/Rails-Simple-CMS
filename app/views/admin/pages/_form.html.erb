@@ -1,6 +1,6 @@
 <%= render "admin/partials/form_validations" %>
 	<%= form_for([:admin, @page], :html => { :class => "form_validations" }) do |f| %>
-	<div class="module_content">
+	<div class="module_content width_quarter">
 	  <% if @page.errors.any? %>
 	    <div id="error_explanation">
 	      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
@@ -20,20 +20,15 @@
 	  	<%= f.text_area :meta_description, :style => "height: 100px" %>
 	  	<%= f.label :content %>
 	  	<%= f.text_area :content %>
-	  	<%= f.label :permalink %>
-	  	<%= f.text_field :permalink, :class =>"validate[required]" %>
 
-	  	<div class="checkbox_pair">
+	</div>
+	<div class="module_content width_quarter">
+	  <%= f.label :permalink %>
+	  <%= f.text_field :permalink, :class =>"validate[required]" %>
+	  <div class="checkbox_pair">
 	  		<div class="checkbox_label"><%= f.label :active %></div>
 	  		<div class="checkbox"><%= f.check_box :active, :checked => true %></div>
 		</div>
-
-	</div>
-
-	</div>
-	<div class="module_content width_quarter vertical_horizonal" style="float:left;">
-	  <%= f.label :name %>
-	  <%= f.text_field :name, :class =>"validate[required]" %>
 	</div>
 	<div style="clear: both"></div>
   	<br />
