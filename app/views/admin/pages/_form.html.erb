@@ -25,6 +25,8 @@
 	<div class="module_content width_quarter">
 	  <%= f.label :permalink %>
 	  <%= f.text_field :permalink, :class =>"validate[required]" %>
+	  <%= f.label :menu_id,"Submenu" %>
+	  <%= f.collection_select :menu_id, Menu.find(:all), :id, :name, {:include_blank => "Null"} %>
 	  <div class="checkbox_pair">
 	  		<div class="checkbox_label"><%= f.label :active %></div>
 	  		<div class="checkbox"><%= f.check_box :active, :checked => true %></div>
