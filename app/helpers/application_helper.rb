@@ -24,5 +24,10 @@ module ApplicationHelper
     render partial: "pages/partials/menu", locals: { name: name}
   end
 
+  def sub_menu(menu_id,banned)
+    banned+=[menu_id]
+    render partial: "pages/partials/sub_menu", locals: { menu_id: menu_id, banned: banned}
+  end
+
 end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111229080546) do
+ActiveRecord::Schema.define(:version => 20120121174537) do
 
   create_table "images", :force => true do |t|
     t.string   "image_file_name"
@@ -57,11 +57,14 @@ ActiveRecord::Schema.define(:version => 20111229080546) do
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "menu_id"
   end
+
+  add_index "pages", ["menu_id"], :name => "index_pages_on_menu_id"
 
   create_table "settings", :force => true do |t|
     t.string   "meta_key"
-    t.text   "meta_value"
+    t.text     "meta_value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

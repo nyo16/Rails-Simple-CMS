@@ -1,15 +1,19 @@
 <nav id="navbar">
-  <ul>
-    <% pages = Menu.menu_name(name) %>
-	  <% pages.each do |page| %>
-		  <li class="nav-item">
-			  <% if page == @homepage %>
-				  <%= link_to page.name, "/", :title => page.name, :id => page.name %>
-			  <% else %>
-				  <%= link_to page.name, "/#{page.permalink}/", :title => page.name, :id => page.name %>
-			  <% end %>
-		  <% end %>
+  <% pages = Menu.menu_name(name) %>
+  <% banned = Menu.where(name: name).map(&:id) %>
+  <ul id="dropdown">
+  <% pages.each do |page| %>
+		<li class="nav-item">
+			<% if page == @homepage %>
+			  <%= link_to page.name, "/", :title => page.name, :id => page.name %>
+			<% else %>
+				<%= link_to page.name, "/#{page.permalink}/", :title => page.name, :id => page.name %>
+			<% end %>
+		  <% unless page.menu_id.nil? or page.menu_id == 0 or banned.include?(page.menu_id) %>
+		    <%= sub_menu(page.menu_id,banned) %>
+	    <% end %>
 	  </li>
+	<% end %>
   </ul>
 </nav>
 
