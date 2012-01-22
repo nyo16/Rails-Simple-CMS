@@ -1,20 +1,20 @@
-// require_self 
+// require_self
 
 $(function() {
-		
+
 	$(".close-me").live("click", function() {
 		$(this).parent().fadeOut();
 	});
-	
+
 	$(".edit_ajax_link").click(function(e) {
 
 		var url = $(this).data("url"); //this.href;
 	    if ($("#dialog").length == 0) {
 	   		var dialog = $('<div id="dialog" style="display:none" title="Edit Page"></div>').appendTo('body');
-	    }         
-        
+	    }
+
         dialog.load(
-                url, 
+                url,
                 function (responseText, textStatus, XMLHttpRequest) {
                     dialog.dialog({
 						width: 390,
@@ -24,7 +24,7 @@ $(function() {
                        			var bValid = true;
 								bValid = bValid && checkLength( $("#page_name"), "Page Name" );
 								bValid = bValid && checkLength( $("#page_permalink"), "Clean Url" );
-								
+
 								if ( bValid ) {
 									$(".update_ajax_page").submit();
 								}
@@ -32,12 +32,12 @@ $(function() {
                        	},
                      	close: function(event, ui) {
 							dialog.remove();
-                     	} 	 
+                     	}
                     });
                 });
 		e.preventDefault();
-	});	
-});	
+	});
+});
 
 function checkLength( o, n ) {
 	if ( o.val().length == 0 ) {
@@ -50,23 +50,20 @@ function checkLength( o, n ) {
 }
 
 // Thanks http://stackoverflow.com/questions/652917/in-jquery-want-to-remove-all-html-inside-of-a-div the second answer for this!
-jQuery.fn.stripTags = function() { return this.replaceWith( this.html().replace(/<\/?[^>]+>/gi, '') ); }; 
+jQuery.fn.stripTags = function() { return this.replaceWith( this.html().replace(/<\/?[^>]+>/gi, '') ); };
 
 function checkTitleLength() {
 	var title_characters = $('#page_title').val();
 	$("#title-count").text( "Characters: " + title_characters.length + " - " + "Words: " + title_characters.split(' ').length );
 }
-	
+
 function checkMetadescLength() {
 	var metadesc_characters = $('#page_meta_description').val();
 	$("#meta-desc-count").text( "Characters: " + metadesc_characters.length + " - " + "Words: " + metadesc_characters.split(' ').length );
-}	
+}
 
 function checkContentLength() {
 	var content_characters = $('#page_content').val().replace(/<\/?[^>]+>/gi, '');
 	$("#content-count").html( "<acronym title='White spaces and line breaks not included in character count.'>Characters:</acronym> " + content_characters.replace(/\s/g,'').length + " - " + "Words: " + content_characters.split(' ' ).length );
 }
-
-
-
 
