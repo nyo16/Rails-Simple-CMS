@@ -1,0 +1,11 @@
+<ul class="sub-menu">
+  <% pages = Page.position_order(menu_id) %>
+  <% pages.each do |page| %>
+    <li><%= link_to page.name, "/#{page.permalink}/", :title => page.name, :id => page.name %>
+      <% unless page.menu_id.nil? or page.menu_id == 0 or banned.include?(page.menu_id) %>
+		    <%= sub_menu(page.menu_id,banned) %>
+	    <% end %>
+    </li>
+  <% end %>
+</ul>
+

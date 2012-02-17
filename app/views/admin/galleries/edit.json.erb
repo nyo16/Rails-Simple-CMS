@@ -1,0 +1,16 @@
+[
+<% count=@gallery.gallery_images.count %>
+<% i=1 %>
+<% @gallery.gallery_images.each do |gallery| %>
+  {
+    "name":"<%=  gallery.image_file_name %>",
+    "size":<%= gallery.image_file_size %>,
+    "url":"<%= gallery.image.url %>",
+    "thumbnail_url":"<%= gallery.image.url(:thumb) %>",
+    "delete_url":"\/\/example.org\/upload-handler?file=picture1.jpg",
+    "delete_type":"DELETE"
+  }<%= "," if i<count %>
+  <% i+=1 %>
+<% end %>
+]
+

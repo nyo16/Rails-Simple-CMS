@@ -12,11 +12,11 @@ Rails version: 3.2 <br/>
 Ruby version: 1.9.3
 
 ### Description
-Simple CMS is a nice project to be used as a base for more complex projects. I used as much as I could the best practices as I know and understand them and it is also in HTML5. 
+Simple CMS is a nice project to be used as a base for more complex projects. I used as much as I could the best practices as I know and understand them and it is also in HTML5.
 
 I've build it for creating some simple sites and for helping some friends learn / mess around with Ruby on Rails.
 
-I also tried to keep it as simple as possible and I'll add more functionality in the future, probably using Rails Engines. It's also a nice project for beginners to explore and learn some basic things for Rails. If you have ideas, feedback or you need help, send me an email at [istoselidas@gmail.com] (mailto:istoselidas@gmail.com).   
+I also tried to keep it as simple as possible and I'll add more functionality in the future, probably using Rails Engines. It's also a nice project for beginners to explore and learn some basic things for Rails. If you have ideas, feedback or you need help, send me an email at [istoselidas@gmail.com] (mailto:istoselidas@gmail.com).
 
 ### Installation - Absolute Beginner's Guide
 Follow the steps below to install and use it:
@@ -33,26 +33,26 @@ Follow the steps below to install and use it:
 10. For admin login, go to localhost:3000/admin/login and type your credentials
 
 You can also load the schema from mysql (like the old days if you missed them). I've included gscms.sql file in the root path of the app, just type:
-**mysql -u username -ppassword -h localhost database_name < gscms.sql**  
-or 
+**mysql -u username -ppassword -h localhost database_name < gscms.sql**
+or
 use any other shiny GUI MySQL interface - database interface to import it. Credentials of the file:
 <br />
 Email:    example@example.com<br />
 Password: testme
 
 ### Production
-For production, be sure to write `rake assets:precompile` first or if you are deploying with capistrano, let `load "deploy/assets"` in the config/deploy.rb . 
+For production, be sure to write `rake assets:precompile` first or if you are deploying with capistrano, let `load "deploy/assets"` in the config/deploy.rb .
 
-# Some basic info about using it 
-*(Pretty boring, just mess around with the project! Only for geeks who read the manual first...)* 
+# Some basic info about using it
+*(Pretty boring, just mess around with the project! Only for geeks who read the manual first...)*
 ### Pages
-I've used mercury editor (**AWESOME** editor for people who just want something shiny and fast and don't know HTML) for editing content. For adding images just drag and drop them. 
+I've used mercury editor (**AWESOME** editor for people who just want something shiny and fast and don't know HTML) for editing content. For adding images just drag and drop them.
 
-You can also edit html with two ways, either from the edit preferences, using content or from mercury. 
+You can also edit html with two ways, either from the edit preferences, using content or from mercury.
 
 Also I've added a simple count for SEO awareness in the edit-preferences (for the content it doesn't count the white spaces / line breaks and html tags as words / characters).
 
-Create Sitemap just generates a sitemap.xml inside the public folder. I am also using page caching which is sweeped away on save / destroy pages and in sorting menus.  
+Create Sitemap just generates a sitemap.xml inside the public folder. I am also using page caching which is sweeped away on save / destroy pages and in sorting menus.
 
 ### Menus
 Currently I've added only one menu, even though you can hack around and add as many as you want. Every menu has a page_position, you can sort pages with drag and drop and edit the name of the menu (if you want to display it somewhere).
@@ -61,16 +61,16 @@ Currently I've added only one menu, even though you can hack around and add as m
 You can edit / delete users, there aren't any role management. I tried to keep it simple, remember?
 
 ### Settings
-Currently you can only change your displayed homepage. I'll add more functionality in the future. 
+Currently you can only change your displayed homepage. I'll add more functionality in the future.
 
 ### Frontend
-For creating your layout, just hack around the **app/views/layouts/pages.html.erb** layout and **app/views/pages/index.html.erb** (it is for the index page) and  **views/pages/show.html.erb** (it is for all the rest pages). 
+For creating your layout, just hack around the **app/views/layouts/pages.html.erb** layout and **app/views/pages/index.html.erb** (it is for the index page) and  **views/pages/show.html.erb** (it is for all the rest pages).
 
 As you probably have guested, you can have different views between index page and all the other pages.
 
 For adding / editing images, javascripts and css, go to **app/assets/** and add them under the folder pages.
 
-### Cache 
+### Cache
 You can clear cache any time by visiting page **http://yourdomain.com/admin/pages/clear_cache** (you need to be logged in as administrator).
 
 ### Edit to fit your needs / Developer's guide
@@ -80,7 +80,7 @@ The database has a general purpose table ( [EAV](http://en.wikipedia.org/wiki/En
 
 I've added mercury-gem under vendor/mercury-gem because I've added some things like authentication and a custom exit button. I'll keep it updated though in the future releases.
 
-Pages should have at least a name and a clean url to be saved. Menus should have at least a name. 
+Pages should have at least a name and a clean url to be saved. Menus should have at least a name.
 
 ### Future simple implementations
 1. Write more interaction tests
@@ -99,8 +99,7 @@ Pages should have at least a name and a clean url to be saved. Menus should have
 
 ### Tests
 I've used the awesome setup of Ryan Bates ([How I test](http://railscasts.com/episodes/275-how-i-test)). Just type `guard` and hit enter to run the tests. Some tests maybe failing but I'll fix them in the future.
-If you are on a OSX you may need to customize it a bit to run the tests, just watch Ryan. 
+If you are on a OSX you may need to customize it a bit to run the tests, just watch Ryan.
 
 _Feel free to use it as you like. I'd love to hear your comments about. Thank you!_
-
 

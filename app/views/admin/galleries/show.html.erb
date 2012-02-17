@@ -1,0 +1,23 @@
+<% content_for :header do %>
+  <%= stylesheet_link_tag "uploadify" %>
+<% end %>
+<% content_for :custom_styling do %>
+  <%= javascript_include_tag "jquery.uploadify.v2.1.4", "swfobject" %>
+<% end %>
+<%= render :partial => "show" %>
+<article class="module width_full">
+<header><h3>Gallery - <%= @gallery.name %></h3></header>
+<h3>
+<div class="module_content">
+  <%= form_for([:admin,GalleryImage.new(:gallery_id => @gallery.id)], :html => {:multipart => true}) do |f| %>
+	  <%= f.hidden_field :gallery_id, "value" => @gallery.id %>
+    <%= f.file_field :image %>
+  <% end %>
+  <h3 id="photos_count"><%= pluralize(@gallery.gallery_images.size, "Photo")%></h3>
+  <div id="uploads">
+    <%= render :partial => @gallery.gallery_images %>
+  </div>
+</div>
+<div style="clear: both"></div>
+</article>
+

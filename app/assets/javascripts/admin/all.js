@@ -5,18 +5,22 @@
 //= require jquery.dataTables.min
 //= require admin/editForm
 
-$(document).ready(function() { 
+$(document).ready(function() {
 	$("#datatable_pages").dataTable({
 		"aoColumns": [null,null,null,null,null,null,{ "bSortable": false },{ "bSortable": false },{ "bSortable": false }
-	]}); 
-	
+	]});
+
+		$("#datatable_galleries").dataTable({
+		"aoColumns": [null,null,null,{ "bSortable": false },{ "bSortable": false }
+	]});
+
 	$("#datatable_menus").dataTable({
 		"aoColumns": [null,null,null,{ "bSortable": false },{ "bSortable": false }
 	]});
-	
+
 	$("#datatable_users").dataTable({
 		"aoColumns": [null,null,null,{ "bSortable": false },{ "bSortable": false }
-	]});  
+	]});
 });
 
 $(document).ready(function() {
@@ -40,11 +44,11 @@ $(document).ready(function() {
 });
 
 $(function() { // Autosize
-	$("#sidebar").css("min-height", $(window).height()- 91); 
+	$("#sidebar").css("min-height", $(window).height()- 91);
 	//if( $(window).width() < 1030 ) {
 		$("#main").css("width", $(window).width() - 280);
 	//}
-	
+
 	$('.column').equalHeight();
 
 });

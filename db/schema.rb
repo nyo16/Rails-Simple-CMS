@@ -11,15 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111229080546) do
+ActiveRecord::Schema.define(:version => 20120212033257) do
 
-  create_table "images", :force => true do |t|
+  create_table "galleries", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "gallery_images", :force => true do |t|
+    t.integer  "gallery_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "menus", :force => true do |t|
@@ -57,11 +64,14 @@ ActiveRecord::Schema.define(:version => 20111229080546) do
     t.boolean  "active"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "menu_id"
   end
+
+  add_index "pages", ["menu_id"], :name => "index_pages_on_menu_id"
 
   create_table "settings", :force => true do |t|
     t.string   "meta_key"
-    t.text   "meta_value"
+    t.text     "meta_value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
