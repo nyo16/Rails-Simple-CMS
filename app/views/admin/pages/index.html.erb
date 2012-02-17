@@ -19,7 +19,7 @@
 			</thead>
 			<tbody>
 				<% @pages.each do |page| %>
-				<tr class="<%= cycle("odd", "even") %>" id="<%= dom_id(page) %>">
+				<tr class="<%= cycle("odd", "even") %>">
 					<td id="<%= dom_id(page, "sort") %>"><%= page.page_menu_mappings.first.page_position rescue "No value" %></td>
 					<td id="<%= dom_id(page, "name") %>"><%= page.name %></td>
 					<td id="<%= dom_id(page, "permalink") %>"><%= page.permalink %></td>
@@ -38,3 +38,4 @@
 <br />
 </article><!-- end of stats article -->
 <div class="spacer"></div>
+

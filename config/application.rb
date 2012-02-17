@@ -50,16 +50,22 @@ module Gscms
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-    
+
     # Also for Heroku Deployment => http://guides.rubyonrails.org/asset_pipeline.html#precompiling-assets
     config.assets.initialize_on_precompile = false
     config.assets.precompile += ['*.js', '*.css'] #+= %w( sign_in.css.erb pages_css/all admin_css/all )
-    
+
     # Define Devise Layouts
     config.to_prepare do
       Devise::ConfirmationsController.layout "sign_in"
       Devise::PasswordsController.layout "sign_in"
       Devise::SessionsController.layout "sign_in"
     end
+
+    %w(middleware).each do |dir|
+       config.autoload_paths << "#{Rails.root.to_s}/app/#{dir}"
+    end
+
   end
 end
+

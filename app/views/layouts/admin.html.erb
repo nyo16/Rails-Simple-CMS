@@ -10,13 +10,14 @@
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<%= stylesheet_link_tag "admin/all", "http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/cupertino/jquery-ui.css" %>
+	 <%= yield(:header)%>
 	<%= csrf_meta_tags %>
 	<%= javascript_include_tag "modernizr-2.0.6.min.js" %>
 </head>
 
 <body>
 <div id="container">
-	
+
 	<header id="header">
 		<hgroup>
 			<h1 class="site_title"><%= link_to "", admin_pages_path, :class => "admin_panel" %></h1>
@@ -24,7 +25,7 @@
 			<div class="btn_view_site"><%= link_to "View Site", root_path %></div>
 		</hgroup>
 	</header> <!-- end of header bar -->
-	
+
 	<section id="secondary_bar">
 		<div class="user">
 			<p><%= current_user.email %></p><%= link_to('Logout', destroy_user_session_path, :method => :delete, :class => "logout_user", :title => "logout") %>
@@ -39,8 +40,8 @@
 		<% if alert %><h4 class="alert_error"><%= alert %></h4><% end %>
   		<%= yield %>
 	</section>
-	
-	
+
+
 
 </div> <!--! end of #container -->
 

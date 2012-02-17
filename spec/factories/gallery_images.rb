@@ -3,6 +3,5 @@
 FactoryGirl.define do
   factory :gallery_image do
     gallery_id 1
-    asset_id 1
   end
 end

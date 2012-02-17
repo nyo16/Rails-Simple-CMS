@@ -1,0 +1,5 @@
+<div class="upload" id="<%= gallery_image.id %>">
+  <%= link_to (image_tag "admin/image_del.png", :id => "image_del"),"#", :id => "del_link"%>
+  <%= image_tag gallery_image.image.url(:thumb), :id => "image_cont" %>
+</div>
+

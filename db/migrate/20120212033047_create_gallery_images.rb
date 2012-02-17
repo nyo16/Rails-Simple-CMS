@@ -2,7 +2,6 @@ class CreateGalleryImages < ActiveRecord::Migration
   def change
     create_table :gallery_images do |t|
       t.integer :gallery_id
-      t.integer :asset_id
 
       t.timestamps
     end

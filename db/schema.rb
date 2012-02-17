@@ -11,16 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120122184039) do
-
-  create_table "assets", :force => true do |t|
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-    t.string   "media_file_name"
-    t.string   "media_content_type"
-    t.integer  "media_file_size"
-    t.datetime "media_updated_at"
-  end
+ActiveRecord::Schema.define(:version => 20120212033257) do
 
   create_table "galleries", :force => true do |t|
     t.string   "name"
@@ -30,9 +21,12 @@ ActiveRecord::Schema.define(:version => 20120122184039) do
 
   create_table "gallery_images", :force => true do |t|
     t.integer  "gallery_id"
-    t.integer  "asset_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "menus", :force => true do |t|
