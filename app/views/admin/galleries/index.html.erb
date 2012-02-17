@@ -16,7 +16,7 @@
 			<tbody>
 				<% @galleries.each do |gallery| %>
 				<tr class="<%= cycle("odd", "even") %>">
-					<td><%= gallery.name %></td>
+					<td><%= link_to gallery.name, admin_gallery_path(gallery) %></td>
 					<td><%= gallery.created_at %></td>
 					<td><%= gallery.updated_at %></td>
 					<td><%= link_to 'Edit', edit_admin_gallery_path(gallery), :class => "edit_link edit_ajax_link" %></td>
