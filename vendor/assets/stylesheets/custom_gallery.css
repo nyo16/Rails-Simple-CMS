@@ -1,0 +1,14 @@
+.cms_gallery{
+  width:auto;
+  height:auto;
+  margin:10px 0 10px 0;
+  background:#3d80ff;
+  float:left;
+}
+
+.cms_gallery img{
+  margin: 5px 5px 5px 5px;
+  padding: 5px 5px 5px 5px;
+  background:#0a3d9b;
+}
+

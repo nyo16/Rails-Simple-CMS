@@ -7,7 +7,7 @@ class GalleryImage < ActiveRecord::Base
   has_attached_file :image,
     :url  => "/gallery/:style/:id/:filename",
     :path => ":rails_root/public/gallery/:style/:id/:filename",
-    :styles => {:thumb => '150x150#', :small  => '400x400>', :large => '800x600>'}
+    :styles => {:thumb => '100x100#', :small  => '400x400>', :large => '800x600>'}
 
 
    def to_jq_upload

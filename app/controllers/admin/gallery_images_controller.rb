@@ -1,5 +1,8 @@
 class Admin::GalleryImagesController < ApplicationController
 
+  layout "admin"
+  before_filter :authenticate_user!
+
   def create
     newparams = coerce(params)
     @upload = GalleryImage.new(newparams[:gallery_image])

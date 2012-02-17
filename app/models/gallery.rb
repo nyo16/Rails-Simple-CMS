@@ -1,6 +1,7 @@
 class Gallery < ActiveRecord::Base
 
   has_many :gallery_images, :dependent => :destroy
+  has_many :pages
 
   validates :name, :presence => true, :uniqueness => true
 

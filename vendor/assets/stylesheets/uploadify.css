@@ -59,7 +59,7 @@ THE SOFTWARE.
 }
 
 .upload {
-  max-width:150px;
+  max-width:100px;
   height:auto;
   margin:5px 10px 5px 0;
   float:left;
@@ -73,7 +73,7 @@ img#image_del {
   margin:0;
 }
 img#image_cont {
-  top:-16px;
+  top:-15px;
   left:0px;
   position:relative;
   z-index:1;

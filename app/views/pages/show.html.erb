@@ -1,2 +1,3 @@
 <%= raw @page.content %>
+<%= render partial: "/pages/partials/gallery", locals: { gallery: @page.gallery} if @page.gallery_id %>
 
