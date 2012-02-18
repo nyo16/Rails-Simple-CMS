@@ -1,0 +1,35 @@
+<article class="module width_full">
+	<header><h3><%= @category.name %></h3></header>
+
+
+	<div class="tab_container">
+		<table id="datatable_articles" class="tablesorter" cellspacing="0">
+			<thead>
+				<tr>
+					<th>Title</th>
+					<th>Published</th>
+					<th>Created</th>
+					<th>Updated</th>
+					<th class="index_action">Edit Preferences</th>
+					<th class="index_action">Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @category.articles.each do |article| %>
+				<tr class="<%= cycle("odd", "even") %>">
+					<td ><%= article.title %></td>
+					<td><%= article.published %></td>
+					<td><%= article.created_at %></td>
+					<td ><%= article.updated_at %></td>
+					<td><%= link_to 'Edit', edit_admin_article_path(article), :class => "edit_link" %>
+					<td><%= link_to 'Destroy', [:admin, article], confirm: 'Are you sure?', method: :delete, :class => "delete_link" %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+<br />
+<br />
+</article><!-- end of stats article -->
+<div class="spacer"></div>
+

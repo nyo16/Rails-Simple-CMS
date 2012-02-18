@@ -18,8 +18,6 @@
 	  	<%= f.text_field :title %>
 	  	<%= f.label :meta_description %>
 	  	<%= f.text_area :meta_description, :style => "height: 100px" %>
-	  	<%= f.label :content %>
-	  	<%= f.text_area :content %>
 
 	</div>
 	<div class="module_content width_quarter">
@@ -27,12 +25,18 @@
 	  <%= f.text_field :permalink, :class =>"validate[required]" %>
 	  <%= f.label :menu_id,"Submenu" %>
 	  <%= f.collection_select :menu_id, Menu.find(:all), :id, :name, {:include_blank => "Null"} %>
-	  <%= f.label :galery_id,"Gallery" %>
+	  <%= f.label :category_id %>
+	  <%= f.collection_select :category_id, Category.find(:all), :id, :name, {:include_blank => "Null"} %>
+	  <%= f.label :galery_id %>
 	  <%= f.collection_select :gallery_id, Gallery.find(:all), :id, :name, {:include_blank => "Null"} %>
 	  <div class="checkbox_pair">
 	  		<div class="checkbox_label"><%= f.label :active %></div>
 	  		<div class="checkbox"><%= f.check_box :active, :checked => true %></div>
 		</div>
+	</div>
+	<div class="module_content width_full">
+ 	 	<%= f.label :content %>
+	  <%= f.text_area :content %>
 	</div>
 	<div style="clear: both"></div>
   	<br />

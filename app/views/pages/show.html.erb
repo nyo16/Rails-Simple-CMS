@@ -1,3 +1,4 @@
 <%= raw @page.content %>
 <%= render partial: "/pages/partials/gallery", locals: { gallery: @page.gallery} if @page.gallery_id %>
+<%= render partial: "/pages/partials/category", locals: { category: @page.category} if @page.category_id %>
 

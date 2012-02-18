@@ -10,8 +10,12 @@ $(document).ready(function() {
 		"aoColumns": [null,null,null,null,null,null,{ "bSortable": false },{ "bSortable": false },{ "bSortable": false }
 	]});
 
-		$("#datatable_galleries").dataTable({
+  $("#datatable_galleries").dataTable({
 		"aoColumns": [null,null,null,{ "bSortable": false },{ "bSortable": false }
+	]});
+
+	$("#datatable_articles").dataTable({
+		"aoColumns": [null,null,null,null,{ "bSortable": false },{ "bSortable": false }
 	]});
 
 	$("#datatable_menus").dataTable({

@@ -13,6 +13,14 @@
 				<li class="<%= "current_action" if controller.controller_name == "menus" && controller.action_name == "new" %>"><%= link_to "New Menu", new_admin_menu_path %></li>
 			</ul>
 
+      <br />
+			<h3 class="<%= "current_menu" if controller.controller_name == "categories" or controller.controller_name == "articles" %>"><a href="/admin/categories">Categories And Articles</a></h3>
+			<ul class="toggle">
+				<li class="<%= "current_action" if controller.controller_name == "categories" && controller.action_name == "index" %>"><%= link_to "All Categories", admin_categories_path %></li>
+				<li class="<%= "current_action" if controller.controller_name == "categories" && controller.action_name == "new" %>"><%= link_to "New Category", new_admin_category_path %></li>
+			  <li class="<%= "current_action" if controller.controller_name == "articles" && controller.action_name == "new" %>"><%= link_to "New Article", new_admin_article_path %></li>
+			</ul>
+
 			<br />
 			<h3 class="<%= "current_menu" if controller.controller_name == "galleries" %>"><a href="/admin/galleries">Galleries</a></h3>
 			<ul class="toggle">

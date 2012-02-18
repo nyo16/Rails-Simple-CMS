@@ -14,13 +14,13 @@
 				</tr>
 			</thead>
 			<tbody>
-				<% @galleries.each do |gallery| %>
+				<% @categories.each do |category| %>
 				<tr class="<%= cycle("odd", "even") %>">
-					<td><%= link_to gallery.name, admin_gallery_path(gallery) %></td>
-					<td><%= gallery.created_at %></td>
-					<td><%= gallery.updated_at %></td>
-					<td><%= link_to 'Edit', edit_admin_gallery_path(gallery), :class => "edit_link" %></td>
-					<td><%= link_to 'Destroy', [:admin, gallery], confirm: 'Are you sure?', method: :delete, :class => "delete_link" %></td>
+					<td><%= link_to category.name, admin_category_path(category) %></td>
+					<td><%= category.created_at %></td>
+					<td><%= category.updated_at %></td>
+					<td><%= link_to 'Edit', edit_admin_category_path(category), :class => "edit_link" %></td>
+					<td><%= link_to 'Destroy', [:admin, category], confirm: 'Are you sure?', method: :delete, :class => "delete_link" %></td>
 				</tr>
 				<% end %>
 			</tbody>

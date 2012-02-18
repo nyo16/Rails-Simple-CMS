@@ -10,6 +10,7 @@ class Page < ActiveRecord::Base
   has_many :page_menu_mappings, :dependent => :delete_all
   has_many :menus, :through => :page_menu_mappings, :uniq => true
 
+  belongs_to :category
   belongs_to :gallery
 
   validates :name, :presence => true

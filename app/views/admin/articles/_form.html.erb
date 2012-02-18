@@ -1,0 +1,48 @@
+<%= render "admin/partials/form_validations" %>
+	<%= form_for([:admin, @article], :html => { :class => "form_validations" }) do |f| %>
+	<div class="module_content width_quarter">
+	  <% if @article.errors.any? %>
+	    <div id="error_explanation">
+	      <h2><%= pluralize(@article.errors.count, "error") %> prohibited this page from being saved:</h2>
+	      <ul>
+	      <% @article.errors.full_messages.each do |msg| %>
+	        <li><%= msg %></li>
+	      <% end %>
+	      </ul>
+	    </div>
+	  <% end %>
+	    <%= f.label :category_id %>
+      <%= f.collection_select :category_id, Category.find(:all), :id, :name, {:prompt => "Select Category"} %>
+	  	<%= f.label :title %>
+	  	<%= f.text_field :title, :class =>"validate[required]" %>
+	  	<%= f.label :meta_description %>
+	  	<%= f.text_area :meta_description, :style => "height: 100px" %>
+	  	<%= f.label :author %>
+	  	<%= f.text_field :author %>
+
+	</div>
+	<div class="module_content width_quarter">
+	  <%= f.label :promote %>
+	  <%= f.text_field :promote%>
+	  <%= f.label :tag_names %>
+  	<%= f.text_field :tag_names %>
+	  <%= f.label :photo%>
+  	<%= f.file_field :photo %>
+	  <%= f.label :gallery_id %>
+	  <%= f.collection_select :gallery_id, Gallery.find(:all), :id, :name, {:include_blank => "Null"} %>
+	</div>
+	<div style="clear: both"></div>
+	<div class="module_content width_full">
+	  <%= f.label :content %>
+	  <%= f.text_area :content, :class =>"validate[required]" %>
+	</div>
+	<div style="clear: both"></div>
+  	<br />
+	  <footer>
+	    <div class="submit_link">
+		    <%= select :article, :published, [["Published", true],["Hidden", false]]  %>
+	    	<%= f.submit nil, :class => "alt_btn" %>
+	  	</div>
+	   </footer>
+	<% end %>
+

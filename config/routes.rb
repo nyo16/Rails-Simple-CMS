@@ -1,5 +1,33 @@
 Gscms::Application.routes.draw do
 
+  get "articles/index"
+
+  get "articles/new"
+
+  get "articles/create"
+
+  get "articles/edit"
+
+  get "articles/update"
+
+  get "articles/destroy"
+
+  get "articles/show"
+
+  get "categories/index"
+
+  get "categories/new"
+
+  get "categories/create"
+
+  get "categories/edit"
+
+  get "categories/update"
+
+  get "categories/destroy"
+
+  get "categories/show"
+
   match '/editor(/*requested_uri)' => "auth_mercury#edit", :as => :mercury_editor
   Mercury::Engine.routes
   devise_for :users, :skip => [:sessions, :passwords] do
@@ -19,6 +47,8 @@ Gscms::Application.routes.draw do
     resources :users,   :except => [:show]
     resources :gallery_images,   :only => [:create, :destroy, :show]
     resources :galleries
+    resources :categories
+    resources :articles
     resources :menus,   :except => [:show] do
        post :page_sort, :on => :collection
     end

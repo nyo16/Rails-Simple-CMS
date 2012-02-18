@@ -22,7 +22,6 @@ class Admin::GalleriesController < ApplicationController
 
   def edit
     @gallery = Gallery.find(params[:id])
-    @gallery.gallery_images.build
   end
 
   def update

@@ -11,7 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120217172757) do
+ActiveRecord::Schema.define(:version => 20120218205749) do
+
+  create_table "articles", :force => true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.string   "meta_description"
+    t.string   "author"
+    t.integer  "category_id"
+    t.boolean  "published"
+    t.integer  "gallery_id"
+    t.integer  "promote"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "galleries", :force => true do |t|
     t.string   "name"
@@ -66,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20120217172757) do
     t.datetime "updated_at"
     t.integer  "menu_id"
     t.integer  "gallery_id"
+    t.integer  "category_id"
   end
 
   add_index "pages", ["menu_id"], :name => "index_pages_on_menu_id"
@@ -75,6 +99,20 @@ ActiveRecord::Schema.define(:version => 20120217172757) do
     t.text     "meta_value"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "taggable_id"
+    t.string   "taggable_type"
+    t.integer  "tag_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "tags", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

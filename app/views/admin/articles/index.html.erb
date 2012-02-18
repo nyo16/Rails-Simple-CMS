@@ -1,0 +1,40 @@
+<article class="module width_full">
+	<header><h3>All articles</h3></header>
+
+
+	<div class="tab_container">
+		<table id="datatable_articles" class="tablesorter" cellspacing="0">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Clean Url</th>
+					<th>Active</th>
+					<th>Created</th>
+					<th>Updated</th>
+					<th class="index_action">Edit Content</th>
+					<th class="index_action">Edit Preferences</th>
+					<th class="index_action">Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @articles.each do |article| %>
+				<tr class="<%= cycle("odd", "even") %>">
+					<td id="<%= dom_id(article, "sort") %>"><%= article.article_menu_mappings.first.article_position rescue "No value" %></td>
+					<td id="<%= dom_id(article, "name") %>"><%= article.name %></td>
+					<td id="<%= dom_id(article, "permalink") %>"><%= article.permalink %></td>
+					<td id="<%= dom_id(article, "active") %>"><%= article.active %></td>
+					<td id="<%= dom_id(article, "created_at") %>"><%= article.created_at %></td>
+					<td id="<%= dom_id(article, "updated_at") %>"><%= article.updated_at %></td>
+					<td><%= link_to 'Edit Content', "/editor" + admin_article_path(article), :class => "edit_content_link" %></td>
+					<td><%= link_to 'Edit', edit_admin_article_path(article), :class => "edit_link" %><%#= link_to 'Edit', edit_admin_article_path(article), :class => "edit_link edit_ajax_link", :data => { :url => ajax_edit_admin_article_path(article) } %></td>
+					<td><%= link_to 'Destroy', [:admin, article], confirm: 'Are you sure?', method: :delete, :class => "delete_link" %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+<br />
+<br />
+</article><!-- end of stats article -->
+<div class="spacer"></div>
+
