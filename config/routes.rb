@@ -1,6 +1,8 @@
 Gscms::Application.routes.draw do
 
 
+  mount Ckeditor::Engine => '/ckeditor'
+
   match '/editor(/*requested_uri)' => "auth_mercury#edit", :as => :mercury_editor
   Mercury::Engine.routes
   devise_for :users, :skip => [:sessions, :passwords] do
@@ -40,7 +42,8 @@ Gscms::Application.routes.draw do
     end
   end
 
-  get ":category/:article" => "pages#article", :as => :permalink
+
+  get ":category/:article" => "pages#article"
   get ":permalink" => "pages#show", :as => :permalink
   root :to => "pages#index"
 

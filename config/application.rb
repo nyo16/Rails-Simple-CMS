@@ -54,7 +54,6 @@ module Gscms
     # Also for Heroku Deployment => http://guides.rubyonrails.org/asset_pipeline.html#precompiling-assets
     config.assets.initialize_on_precompile = false
     config.assets.precompile += ['*.js', '*.css'] #+= %w( sign_in.css.erb pages_css/all admin_css/all )
-
     # Define Devise Layouts
     config.to_prepare do
       Devise::ConfirmationsController.layout "sign_in"
@@ -65,6 +64,8 @@ module Gscms
     %w(middleware).each do |dir|
        config.autoload_paths << "#{Rails.root.to_s}/app/#{dir}"
     end
+
+    config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
 
   end
 end

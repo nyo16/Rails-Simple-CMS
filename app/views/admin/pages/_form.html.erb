@@ -1,5 +1,8 @@
+<%= content_for :header do %>
+  <%= javascript_include_tag "ckeditor/ckeditor" %>
+<% end %>
 <%= render "admin/partials/form_validations" %>
-	<%= form_for([:admin, @page], :html => { :class => "form_validations" }) do |f| %>
+<%= form_for([:admin, @page], :html => { :class => "form_validations" }) do |f| %>
 	<div class="module_content width_quarter">
 	  <% if @page.errors.any? %>
 	    <div id="error_explanation">
@@ -34,9 +37,9 @@
 	  		<div class="checkbox"><%= f.check_box :active, :checked => true %></div>
 		</div>
 	</div>
+	<div style="clear: both"></div>
 	<div class="module_content width_full">
- 	 	<%= f.label :content %>
-	  <%= f.text_area :content %>
+    <%= f.cktext_area :content %>
 	</div>
 	<div style="clear: both"></div>
   	<br />

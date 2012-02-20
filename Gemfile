@@ -19,6 +19,7 @@ end
 gem 'jquery-rails'
 gem 'therubyracer'
 gem 'mercury-rails', '0.2.3', :path => "vendor/mercury-gem" #, git: 'https://github.com/jejacks0n/mercury.git', ref: '524f5f06aa'
+gem 'ckeditor', "3.7.0.rc2"
 
 group :test, :development do
   gem 'capistrano'
@@ -36,10 +37,5 @@ end
 
 group :development do
   gem 'letter_opener'
-end
-
-group :production do
-  gem 'pg'
-  gem 'thin'
 end
 

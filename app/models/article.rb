@@ -6,6 +6,7 @@ class Article < ActiveRecord::Base
   before_validation :prettify_permalink
 
   belongs_to :category
+  belongs_to :gallery
 
   attr_writer :tag_names
 

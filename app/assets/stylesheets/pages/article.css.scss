@@ -1,0 +1,39 @@
+.art_body {
+  float:left;
+  width:100%;
+  height:auto;
+  a {
+    color:#124bb9;
+    text-decoration:none;
+    &:hover {
+      color:black;
+    }
+  }
+}
+
+h3#art_date {
+  font-size:12px;
+  margin-bottom:-10px;
+  float:left;
+  width:100%;
+}
+
+.art_face{
+  float:left;
+  margin: 0 10px 10px 0;
+  width:100px;
+}
+
+
+.art_content {
+  width:auto;
+  height:auto;
+  float:left;
+}
+
+.art_moar {
+  float:right;
+  width:auto;
+  margin-right:20px;
+}
+

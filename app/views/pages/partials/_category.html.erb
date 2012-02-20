@@ -1,13 +1,19 @@
 <% category.articles.each do |article| %>
   <div class="art_body">
-    <h3><%= raw I18n.l(article.created_at, :format=> "%A  %d %b %Y") %></h3>
-    <h2><%= link_to article.title, "/"+article.final_permalink %></h2>
+    <h3 id="art_date"><%= raw I18n.l(article.created_at, :format=> "%A  %d %b %Y") %></h3>
     <div class="art_content">
-      <%= link_to(image_tag( article.photo.url(:small)), article.photo.url, :class => "fancybox", :style => "float:left;margin:0 10px 10px 0;") unless article.photo_file_name.nil? %>
-      <%= raw article.content %>
+      <h2><%= link_to article.title, "/"+article.final_permalink %></h2>
+      <%= link_to(image_tag( article.photo.url(:small)), article.photo.url, :class => "fancybox art_face") unless article.photo_file_name.nil? %>
+      <%= raw article.content.split('<div style="page-break-after: always;">').first %>
+    </div>
+    <div class="art_moar">
+      <%= link_to "Read moar...", "/"+article.final_permalink %>
     </div>
   </div>
   <div style="clear: both"></div>
-  <hr>
+  <hr />
+<% end %>
+<%= content_for :header do%>
+  <%= stylesheet_link_tag "pages/article" %>
 <% end %>
 
