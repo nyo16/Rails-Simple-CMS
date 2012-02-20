@@ -1,32 +1,5 @@
 Gscms::Application.routes.draw do
 
-  get "articles/index"
-
-  get "articles/new"
-
-  get "articles/create"
-
-  get "articles/edit"
-
-  get "articles/update"
-
-  get "articles/destroy"
-
-  get "articles/show"
-
-  get "categories/index"
-
-  get "categories/new"
-
-  get "categories/create"
-
-  get "categories/edit"
-
-  get "categories/update"
-
-  get "categories/destroy"
-
-  get "categories/show"
 
   match '/editor(/*requested_uri)' => "auth_mercury#edit", :as => :mercury_editor
   Mercury::Engine.routes
@@ -67,6 +40,7 @@ Gscms::Application.routes.draw do
     end
   end
 
+  get ":category/:article" => "pages#article", :as => :permalink
   get ":permalink" => "pages#show", :as => :permalink
   root :to => "pages#index"
 

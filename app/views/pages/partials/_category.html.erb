@@ -1,7 +1,13 @@
 <% category.articles.each do |article| %>
   <div class="art_body">
-    <h3><%= article.title %></h3>
-    <div class="art_content"><%= raw article.content %></div>
+    <h3><%= raw I18n.l(article.created_at, :format=> "%A  %d %b %Y") %></h3>
+    <h2><%= link_to article.title, "/"+article.final_permalink %></h2>
+    <div class="art_content">
+      <%= link_to(image_tag( article.photo.url(:small)), article.photo.url, :class => "fancybox", :style => "float:left;margin:0 10px 10px 0;") unless article.photo_file_name.nil? %>
+      <%= raw article.content %>
+    </div>
   </div>
+  <div style="clear: both"></div>
+  <hr>
 <% end %>
 

@@ -1,7 +1,9 @@
 class Article < ActiveRecord::Base
 
-  after_update :assign_tags
   after_save :assign_tags
+
+  include ActionView::Helpers::TextHelper  # for using 'truncate' method on prettify_permalink
+  before_validation :prettify_permalink
 
   belongs_to :category
 
@@ -11,14 +13,28 @@ class Article < ActiveRecord::Base
   has_many :tags, :through => :taggings
 
   validates :title, :presence => true
+  validates :title, :length => { :maximum => 250 }
 	validates :content, :presence => true
 	validates :category_id, :presence => true
 	validates :published, :presence => true
+  validates :permalink, :presence => true
+  validates :permalink, :length => { :maximum => 250 }
+  validates_uniqueness_of :permalink, :scope => :category_id
+  validates :meta_description, :length => { :maximum => 250 }
 
   has_attached_file :photo,
-										:url  => "/article/:id/:style_img_:id.:extension",
+										:url  => "/articles/:id/:style_img_:id.:extension",
                   	:path => ":rails_root/public/articles/:id/:style_img_:id.:extension",
                   	:styles => {:medium => "300>", :small => "100>" }
+
+  scope :published_only, where(published: true)
+
+  def prettify_permalink
+    # parameterize function is nice but not as good as below
+    self.permalink = truncate(self.permalink.strip.gsub(/[\~]|[\`]|[\!]|[\@]|[\#]|[\$]|[\%]|[\^]|[\&]|[\*]|[\(]|[\)]|[\+]|[\=]|[\{]|[\[]|[\}]|[\]]|[\|]|[\\]|[\:]|[\;]|[\"]|[\']|[\<]|[\,]|[\>]|[\.]|[\?]|[\/]/,"").gsub(/\s+/,"-").downcase, length: 50, separator: "-", omission: "")
+    category = truncate(self.category.name.strip.gsub(/[\~]|[\`]|[\!]|[\@]|[\#]|[\$]|[\%]|[\^]|[\&]|[\*]|[\(]|[\)]|[\+]|[\=]|[\{]|[\[]|[\}]|[\]]|[\|]|[\\]|[\:]|[\;]|[\"]|[\']|[\<]|[\,]|[\>]|[\.]|[\?]|[\/]/,"").gsub(/\s+/,"-").downcase, length: 50, separator: "-", omission: "")
+    self.final_permalink = category+"/"+self.permalink
+  end
 
   def tag_names
     @tag_names || tags.map(&:name).join(', ')

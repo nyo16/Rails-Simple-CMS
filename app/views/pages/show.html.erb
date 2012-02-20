@@ -1,4 +1,19 @@
+<% content_for :seo do %>
+  <title><%= @page.title %></title>
+  <meta name="description" content="<%= @page.meta_description %>">
+<% end %>
 <%= raw @page.content %>
-<%= render partial: "/pages/partials/gallery", locals: { gallery: @page.gallery} if @page.gallery_id %>
 <%= render partial: "/pages/partials/category", locals: { category: @page.category} if @page.category_id %>
+<%= render partial: "/pages/partials/gallery", locals: { gallery: @page.gallery} if @page.gallery_id %>
+<% content_for :custom_styling do %>
+  <%= javascript_include_tag "jquery.fancybox", "jquery.mousewheel-3.0.6.pack"%>
+  <script type="text/javascript">
+		$(document).ready(function() {
+			$('.fancybox').fancybox();
+		});
+	</script>
+<% end %>
+<% content_for :header do %>
+  <%= stylesheet_link_tag "jquery.fancybox", "custom_gallery"%>
+<% end %>
 
