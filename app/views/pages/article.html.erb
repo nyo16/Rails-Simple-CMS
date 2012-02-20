@@ -9,12 +9,10 @@
     <%= link_to(image_tag( @article.photo.url(:small)), @article.photo.url, :class => "fancybox art_face") unless @article.photo_file_name.nil? %>
     <%= raw @article.content.gsub('<div style="page-break-after: always;">', '<br />') %>
   </div>
+  <%= render partial: "/pages/partials/gallery", locals: { gallery: @article.gallery} if @article.gallery_id %>
+  <div style="clear: both"></div>
 </div>
-<div style="clear: both"></div>
-<%= content_for :header do%>
-  <%= stylesheet_link_tag "pages/article" %>
-<% end %>
-<%= render partial: "/pages/partials/gallery", locals: { gallery: @article.gallery} if @article.gallery_id %>
+  <div style="clear: both"></div>
 <% content_for :custom_styling do %>
   <%= javascript_include_tag "jquery.fancybox", "jquery.mousewheel-3.0.6.pack"%>
   <script type="text/javascript">
@@ -24,6 +22,7 @@
 	</script>
 <% end %>
 <% content_for :header do %>
+  <%= stylesheet_link_tag "pages/article" %>
   <%= stylesheet_link_tag "jquery.fancybox", "custom_gallery"%>
 <% end %>
 

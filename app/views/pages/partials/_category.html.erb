@@ -1,4 +1,4 @@
-<% category.articles.each do |article| %>
+<% category.articles.published_only.each do |article| %>
   <div class="art_body">
     <h3 id="art_date"><%= raw I18n.l(article.created_at, :format=> "%A  %d %b %Y") %></h3>
     <div class="art_content">
@@ -6,6 +6,7 @@
       <%= link_to(image_tag( article.photo.url(:small)), article.photo.url, :class => "fancybox art_face") unless article.photo_file_name.nil? %>
       <%= raw article.content.split('<div style="page-break-after: always;">').first %>
     </div>
+    <div style="clear: both"></div>
     <div class="art_moar">
       <%= link_to "Read moar...", "/"+article.final_permalink %>
     </div>

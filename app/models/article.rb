@@ -1,6 +1,7 @@
 class Article < ActiveRecord::Base
 
   after_save :assign_tags
+  before_save :default_values
 
   include ActionView::Helpers::TextHelper  # for using 'truncate' method on prettify_permalink
   before_validation :prettify_permalink
@@ -22,13 +23,16 @@ class Article < ActiveRecord::Base
   validates :permalink, :length => { :maximum => 250 }
   validates_uniqueness_of :permalink, :scope => :category_id
   validates :meta_description, :length => { :maximum => 250 }
+  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
   has_attached_file :photo,
 										:url  => "/articles/:id/:style_img_:id.:extension",
                   	:path => ":rails_root/public/articles/:id/:style_img_:id.:extension",
                   	:styles => {:medium => "300>", :small => "100>" }
 
-  scope :published_only, where(published: true)
+  scope :published_only, where(published: true).order("promote Desc, created_at Desc")
+
+
 
   def prettify_permalink
     # parameterize function is nice but not as good as below
@@ -42,6 +46,10 @@ class Article < ActiveRecord::Base
   end
 
   private
+
+  def default_values
+    self.promote = 0 if self.promote.nil?
+  end
 
   def assign_tags
     if @tag_names
