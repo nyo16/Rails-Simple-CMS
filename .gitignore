@@ -11,6 +11,7 @@ capybara-*.html
 /public/system/**/*
 /public/gallery/**/*
 /public/articles/**/*
+/public/ckeditor_assets/**/*
 /coverage/
 /spec/tmp/*
 **.orig
