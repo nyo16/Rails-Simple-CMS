@@ -1,6 +1,7 @@
 class Article < ActiveRecord::Base
 
-  after_save :assign_tags
+  after_save :assign_tags, :cache_expiration
+  after_destroy :cache_expiration
   before_save :default_values
 
   include ActionView::Helpers::TextHelper  # for using 'truncate' method on prettify_permalink
@@ -46,6 +47,12 @@ class Article < ActiveRecord::Base
   end
 
   private
+
+  def cache_expiration
+    ActionController::Base.new.expire_fragment("article_seo_"+self.id.to_s)
+    ActionController::Base.new.expire_fragment("article_content_"+self.id.to_s)
+    ActionController::Base.new.expire_fragment("category_"+self.category.id.to_s)
+  end
 
   def default_values
     self.promote = 0 if self.promote.nil?

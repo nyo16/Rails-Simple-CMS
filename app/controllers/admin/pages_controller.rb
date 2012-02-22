@@ -9,27 +9,27 @@ class Admin::PagesController < ApplicationController
   def new
     @page = Page.new
   end
-  
+
   def create
     @page = Page.new(params[:page])
     if @page.save
       redirect_to new_admin_page_url, notice: 'Page was successfully created.'
     else
-      render action: "new" 
+      render action: "new"
     end
   end
 
   def edit
     @page = Page.find(params[:id])
   end
-    
+
   def ajax_edit
     @page = Page.find(params[:id])
   end
-  
+
   def update
     @page = Page.find(params[:id])
-    respond_to do |format|  
+    respond_to do |format|
       if @page.update_attributes(params[:page])
         format.html { redirect_to admin_pages_url, notice: 'Page was successfully updated.' }
         format.js   { render "success_update" }
@@ -44,25 +44,25 @@ class Admin::PagesController < ApplicationController
     @pages = Page.position_order
     @page = Page.find(params[:id])
   end
- 
+
   def mercury_update
     page = Page.find(params[:id])
     page.content = params[:content][:page_content][:value]
     page.save!
     render text: ""
   end
-  
+
   def destroy
     @page = Page.find(params[:id])
     @page.destroy
     redirect_to admin_pages_url, notice: "Page was successfully deleted."
   end
-  
-  
+
+
   def sitemap
     @pages = Page.where("active")
     File.delete("#{Rails.root}/public/sitemap.xml") if File.exists?("#{Rails.root}/public/sitemap.xml")
-    
+
     sitemap = File.new("#{Rails.root}/public/sitemap.xml", "w")
     sitemap.puts('<?xml version="1.0" encoding="utf-8"?>')
     sitemap.puts('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
@@ -72,15 +72,15 @@ class Admin::PagesController < ApplicationController
       sitemap.puts("<lastmod>#{page.updated_at.strftime("%Y-%m-%d")}</lastmod>")
       sitemap.puts('</url>')
     end
-    sitemap.puts('</urlset>')    
+    sitemap.puts('</urlset>')
     redirect_to admin_pages_url, notice: 'Sitemap was successfully created.'
   end
-    
+
   def clear_cache
     Page.cache_expiration
     redirect_to admin_pages_url, notice: 'Cache was successfully sweeped.'
   end
-  
+
   private
     def admin_page_layout
       case action_name
@@ -88,9 +88,10 @@ class Admin::PagesController < ApplicationController
         "pages"
       when "ajax_edit"
         "popup"
-      else 
+      else
         "admin"
       end
     end
-  
+
 end
+

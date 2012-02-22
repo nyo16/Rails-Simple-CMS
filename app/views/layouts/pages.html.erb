@@ -6,10 +6,10 @@
 
 <head>
 	<meta charset="utf-8" http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-	<%= yield(:seo)%>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-	<%= stylesheet_link_tag "pages/all" %>
+	<%= yield(:seo)%>
 	<%= yield(:header)%>
+	<%= stylesheet_link_tag "pages/all" %>
 	<%= csrf_meta_tags %>
 	<%= javascript_include_tag "modernizr-2.0.6.min.js" %>
 </head>

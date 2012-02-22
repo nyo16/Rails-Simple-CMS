@@ -1,18 +1,23 @@
 <% content_for :seo do %>
-  <title><%= @article.title %></title>
-  <meta name="description" content="<%= @article.meta_description %>">
+  <% cache "article_seo_"+@article.id.to_s do %>
+    <title><%= @article.title %></title>
+    <meta name="description" content="<%= @article.meta_description %>">
+  <% end %>
 <% end %>
-<div class="art_body">
-  <h3 id="art_date"><%= raw I18n.l(@article.created_at, :format=> "%A  %d %b %Y") %></h3>
-  <div class="art_content">
-    <h2><%= @article.title %></h2>
-    <%= link_to(image_tag( @article.photo.url(:small)), @article.photo.url, :class => "fancybox art_face") unless @article.photo_file_name.nil? %>
-    <%= raw @article.content.gsub('<div style="page-break-after: always;">', '<br />') %>
+<% cache "article_content_"+@article.id.to_s do %>
+  <div class="art_body">
+    <h3 id="art_date"><%= raw I18n.l(@article.created_at, :format=> "%A  %d %b %Y") %></h3>
+    <div class="art_content">
+      <h2><%= @article.title %></h2>
+      <%= link_to(image_tag( @article.photo.url(:small)), @article.photo.url, :class => "fancybox art_face") unless @article.photo_file_name.nil? %>
+      <%= raw @article.content.gsub('<div style="page-break-after: always;">
+	  <span style="display: none;">&nbsp;</span></div>', '<br />') %>
+    </div>
+    <%= render partial: "/pages/partials/gallery", locals: { gallery: @article.gallery} if @article.gallery_id %>
+    <div style="clear: both"></div>
   </div>
-  <%= render partial: "/pages/partials/gallery", locals: { gallery: @article.gallery} if @article.gallery_id %>
   <div style="clear: both"></div>
-</div>
-  <div style="clear: both"></div>
+<% end %>
 <% content_for :custom_styling do %>
   <%= javascript_include_tag "jquery.fancybox", "jquery.mousewheel-3.0.6.pack"%>
   <script type="text/javascript">

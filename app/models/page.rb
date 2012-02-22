@@ -1,17 +1,18 @@
 class Page < ActiveRecord::Base
   default_scope :order => "name ASC"
   scope :position_order, lambda { |num = 1| joins(:page_menu_mappings).where("page_menu_mappings.menu_id =?", num).reorder("page_position").where(:active => true) }
-  after_save { Page.cache_expiration }
-  after_destroy { Page.cache_expiration }
+  after_save :cache_expiration
+  after_destroy :cache_expiration
 
   include ActionView::Helpers::TextHelper # for using 'truncate' method on prettify_permalink
   before_validation :prettify_permalink
 
-  has_many :page_menu_mappings, :dependent => :delete_all
+  has_many :page_menu_mappings, :dependent => :destroy
   has_many :menus, :through => :page_menu_mappings, :uniq => true
 
   belongs_to :category
   belongs_to :gallery
+  belongs_to :menu
 
   validates :name, :presence => true
   validates :name, :uniqueness => true
@@ -38,11 +39,14 @@ class Page < ActiveRecord::Base
     pending "Must create some controllers etc and then"
   end
 
-   def self.cache_expiration
-    immune_deletion_cache = ["404.html", "422.html", "500.html"]
-    Dir["#{Rails.root}/public/*.html"].entries.each do |f|
-      File.delete(f) unless immune_deletion_cache.include?(f.gsub("#{Rails.root}/public/", ""))
+
+  private
+  def cache_expiration
+    Menu.all.each do |menu|
+      ActionController::Base.new.expire_fragment(menu.name+"_menu")
     end
- end
+    ActionController::Base.new.expire_fragment("page_seo_"+self.id.to_s)
+    ActionController::Base.new.expire_fragment("page_content_"+self.id.to_s)
+  end
 end
 

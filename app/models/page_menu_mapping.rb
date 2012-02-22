@@ -2,12 +2,14 @@ class PageMenuMapping < ActiveRecord::Base
   before_create :add_page_position
   belongs_to :page
   belongs_to :menu
-  
+  after_save :cache_expiration
+  after_destroy :cache_expiration
+
   validates :page_id, :presence => true
-  validates :menu_id, :presence => true  
-  
+  validates :menu_id, :presence => true
+
   validates_uniqueness_of :menu_id, :scope => :page_position, :message => "Can't have the save page position as another page"
-  
+
   def add_page_position
     if self.page_position.nil?
       page_menu_mappings = PageMenuMapping.where(:menu_id => self.menu_id)
@@ -18,5 +20,14 @@ class PageMenuMapping < ActiveRecord::Base
       end
     end
   end
-  
+
+  private
+  def cache_expiration
+    Menu.all.each do |menu|
+      ActionController::Base.new.expire_fragment(menu.name+"_menu")
+    end
+  end
+
+
 end
+

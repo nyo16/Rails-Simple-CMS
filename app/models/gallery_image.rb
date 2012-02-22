@@ -1,6 +1,8 @@
 class GalleryImage < ActiveRecord::Base
 
   belongs_to :gallery
+  after_save :cache_expiration
+  after_destroy :cache_expiration
 
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png', 'image/gif']
 
@@ -19,6 +21,12 @@ class GalleryImage < ActiveRecord::Base
       "delete_url" => "random",
       "delete_type" => "DELETE"
     }
+  end
+
+  private
+
+  def cache_expiration
+    ActionController::Base.new.expire_fragment("gallery_"+self.gallery.id.to_s)
   end
 
 end

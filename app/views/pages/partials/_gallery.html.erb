@@ -1,7 +1,9 @@
-<div class="cms_gallery">
-    <% gallery.gallery_images.each do |gal| %>
-      <%= link_to (image_tag gal.image.url(:thumb)), gal.image.url, :class => "fancybox", "data-fancybox-group" => "gallery" %>
-    <% end %>
-</div>
-<div style="clear: both"></div>
+<% cache "gallery_"+gallery.id.to_s do %>
+  <div class="cms_gallery">
+      <% gallery.gallery_images.each do |gal| %>
+        <%= link_to (image_tag gal.image.url(:thumb)), gal.image.url, :class => "fancybox", "data-fancybox-group" => "gallery" %>
+      <% end %>
+  </div>
+  <div style="clear: both"></div>
+<% end %>
 
