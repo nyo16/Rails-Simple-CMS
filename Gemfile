@@ -20,6 +20,7 @@ gem 'jquery-rails'
 gem 'therubyracer'
 gem 'mercury-rails', '0.2.3', :path => "vendor/mercury-gem" #, git: 'https://github.com/jejacks0n/mercury.git', ref: '524f5f06aa'
 gem 'ckeditor', "3.7.0.rc2"
+gem 'cancan'
 
 group :test, :development do
   gem 'capistrano'
